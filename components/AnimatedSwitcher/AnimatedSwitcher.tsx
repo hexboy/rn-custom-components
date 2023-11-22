@@ -10,9 +10,11 @@ const DefaultRenderItem = ({ value }: { value: any }) => (
   <Text style={styles.text}>{value}</Text>
 );
 
+const defaultItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 export default function AnimatedSwitcher({
   index = 0,
-  items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  items = defaultItems,
   height = 30,
   style = null,
   RenderItem = DefaultRenderItem,
