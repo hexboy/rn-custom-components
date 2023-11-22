@@ -30,7 +30,7 @@ export default function AnimatedSwitcher({
   }) => React.JSX.Element;
 }) {
   const len = items.length;
-  const prevIndex = useSharedValue(0);
+  const prevIndex = useSharedValue(-1);
   const translateY = useSharedValue((-len - 1) * height);
 
   useEffect(() => {
@@ -45,14 +45,18 @@ export default function AnimatedSwitcher({
     } else if (prevIndex.value === 0 && newIndex === len - 1) {
       translateY.value = -1 * height;
     }
-    translateY.value = withSpring(pos, {
-      mass: 1,
-      damping: 20,
-      stiffness: 500,
-      overshootClamping: false,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 2,
-    });
+    if (prevIndex.value === -1) {
+      translateY.value = pos;
+    } else {
+      translateY.value = withSpring(pos, {
+        mass: 1,
+        damping: 20,
+        stiffness: 500,
+        overshootClamping: false,
+        restDisplacementThreshold: 0.01,
+        restSpeedThreshold: 2,
+      });
+    }
     prevIndex.value = newIndex;
   }, [index, items]);
 
