@@ -1,10 +1,10 @@
-import { useNavigation } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { useNavigation, useRouter } from 'expo-router';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function Components() {
   const navigation = useNavigation();
+  const router = useRouter();
 
   useEffect(() => {
     navigation.setOptions({ title: 'Components' });
@@ -12,8 +12,13 @@ export default function Components() {
 
   return (
     <View style={styles.container}>
-      <Text>Component A</Text>
-      <StatusBar style="auto" />
+      <Text>Components</Text>
+      <Button
+        title="AnimatedSwitcher"
+        onPress={() => {
+          router.push('/components/animated-switcher');
+        }}
+      />
     </View>
   );
 }
